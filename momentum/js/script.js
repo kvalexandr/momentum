@@ -1,3 +1,12 @@
+const preloader = document.querySelector('.preloader');
+
+window.addEventListener('load', () => {
+  preloader.classList.add('hidden');
+  setTimeout(() => {
+    preloader.remove();
+  }, 600)
+});
+
 // time
 
 const time = document.querySelector('.time');
@@ -10,11 +19,11 @@ const btnQuote = document.querySelector('.btn-quote');
 
 const showTime = () => {
   const today = new Date();
-  const hour = today.getHours();
+  const hour = addZero(today.getHours());
   const min = addZero(today.getMinutes());
   const sec = addZero(today.getSeconds());
 
-  time.innerHTML = `${hour}<span>:</span>${min}<span>:</span>${sec}`;
+  time.innerHTML = `<span class='t th'>${hour}</span><span>:</span><span class='t'>${min}</span><span>:</span><span class='t ts'>${sec}</span>`;
 
   if (min === '00' && sec === '00') {
     setBgGreet();
@@ -91,7 +100,7 @@ const setBgGreet = () => {
 };
 
 const viewBgImage = (day, imageIndex) => {
-  const body = document.querySelector('body');
+  const body = document.querySelector('.wrapper');
   const img = document.createElement('img');
   const src = `assets/images/${day}/${addZero(arrDayBg[imageIndex])}.jpg`
   img.src = src;
@@ -195,21 +204,26 @@ focus.addEventListener('click', () => focus.textContent = '');
 
 //quote
 
-const blockquote = document.querySelector('blockquote');
+const quote = document.querySelector('.quote');
 const figcaption = document.querySelector('figcaption');
 const btn = document.querySelector('.btn-quote');
 
-async function getQuote() {
+async function getQuote(e) {
+  e.target.innerText = 'Loading...';
+  e.target.disabled = true;
   const url = `https://api.chucknorris.io/jokes/random`;
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    quote.textContent = data.value.substring(0, 150);
+    e.target.innerText = 'Change joke';
+    e.target.disabled = false;
   });
-  const data = await res.json();
-  blockquote.textContent = data.value;
-  figcaption.textContent = data.quoteAuthor;
 }
 
 document.addEventListener('DOMContentLoaded', getQuote);
