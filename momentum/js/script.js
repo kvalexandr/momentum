@@ -192,3 +192,25 @@ const setFocus = (e) => {
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 focus.addEventListener('click', () => focus.textContent = '');
+
+//quote
+
+const blockquote = document.querySelector('blockquote');
+const figcaption = document.querySelector('figcaption');
+const btn = document.querySelector('.btn-quote');
+
+async function getQuote() {
+  const url = `https://api.chucknorris.io/jokes/random`;
+  const res = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  });
+  const data = await res.json();
+  blockquote.textContent = data.value;
+  figcaption.textContent = data.quoteAuthor;
+}
+
+document.addEventListener('DOMContentLoaded', getQuote);
+btn.addEventListener('click', getQuote);
