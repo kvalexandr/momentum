@@ -93,7 +93,7 @@ const setBgGreet = () => {
 const viewBgImage = (day, imageIndex) => {
   const body = document.querySelector('body');
   const img = document.createElement('img');
-  const src = `/assets/images/${day}/${addZero(arrDayBg[imageIndex])}.jpg`
+  const src = `assets/images/${day}/${addZero(arrDayBg[imageIndex])}.jpg`
   img.src = src;
   btnBg.disabled = true;
   img.onload = () => {
