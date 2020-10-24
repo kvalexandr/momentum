@@ -243,3 +243,52 @@ async function getWeather() {
     weatherError.textContent = `Erorr: City not found`;
   }
 }
+
+// get city
+
+const getCity = () => {
+  if (localStorage.getItem('city') === null) {
+    city.textContent = 'Moscow';
+  } else {
+    city.textContent = localStorage.getItem('city');
+  }
+};
+
+// set city
+
+const setCity = (e) => {
+  const newCity = e.target.innerText.trim();
+
+  if (e.type === 'keypress') {
+    if (e.which == 13 || e.keyCode == 13) {
+      if (newCity !== '') {
+        localStorage.setItem('city', newCity);
+        getWeather();
+      } else {
+        getCity();
+      }
+      city.blur();
+    }
+  } else {
+    if (newCity !== '') {
+      localStorage.setItem('city', newCity);
+      getWeather();
+    } else {
+      getCity();
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', getWeather);
+city.addEventListener('keypress', setCity);
+city.addEventListener('blur', setCity);
+city.addEventListener('click', () => city.textContent = '');
+
+// run
+
+showTime();
+showDay();
+setBgGreet();
+getName();
+getFocus();
+getCity();
