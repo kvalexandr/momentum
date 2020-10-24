@@ -101,3 +101,20 @@ const viewBgImage = (day, imageIndex) => {
     setTimeout(function () { btnBg.disabled = false; }, 1000);
   };
 };
+
+// change bg
+
+const changeBg = () => {
+  let today = new Date();
+  let hour = parseInt(today.getHours());
+
+  return function () {
+    hour += 1;
+    hour = hour % 24;
+    const day = getDay(hour);
+    console.log(hour, arrDayBg[hour], day);
+    viewBgImage(day, hour);
+  }
+}
+
+btnBg.addEventListener('click', changeBg());
