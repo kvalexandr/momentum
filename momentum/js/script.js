@@ -118,3 +118,40 @@ const changeBg = () => {
 }
 
 btnBg.addEventListener('click', changeBg());
+
+// get name
+
+const getName = () => {
+  if (localStorage.getItem('name') === null) {
+    name.textContent = '[Enter Name]';
+  } else {
+    name.textContent = localStorage.getItem('name');
+  }
+};
+
+// set name
+
+const setName = (e) => {
+  const newName = e.target.innerText.trim();
+
+  if (e.type === 'keypress') {
+    if (e.which == 13 || e.keyCode == 13) {
+      if (newName !== '') {
+        localStorage.setItem('name', newName);
+      } else {
+        getName();
+      }
+      name.blur();
+    }
+  } else {
+    if (newName !== '') {
+      localStorage.setItem('name', newName);
+    } else {
+      getName();
+    }
+  }
+};
+
+name.addEventListener('keypress', setName);
+name.addEventListener('blur', setName);
+name.addEventListener('click', () => name.textContent = '');
