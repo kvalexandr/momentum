@@ -214,3 +214,32 @@ async function getQuote() {
 
 document.addEventListener('DOMContentLoaded', getQuote);
 btn.addEventListener('click', getQuote);
+
+// weather
+
+const weatherError = document.querySelector('.weather-error');
+const weatherIcon = document.querySelector('.weather-icon');
+const temp = document.querySelector('.temp');
+const wind = document.querySelector('.wind');
+const hum = document.querySelector('.hum');
+const city = document.querySelector('.city');
+
+async function getWeather() {
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=beb0ca4fc07ad25d8c49454a88ed7158&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    weatherError.textContent = '';
+    weatherIcon.innerHTML = `<i class="owf owf-${data.weather[0].id}"></i>`;
+    temp.textContent = `${Math.round(data.main.temp)} °C`;
+    wind.textContent = `Wind: ${data.wind.speed} m/s`;
+    hum.textContent = `Humidity: ${data.main.humidity} %`;
+  } catch (e) {
+    weatherIcon.innerHTML = ''
+    temp.textContent = '';
+    wind.textContent = '';
+    hum.textContent = '';
+    weatherError.textContent = `Erorr: City not found`;
+  }
+}
