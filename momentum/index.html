@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/owfont-regular.css">
+  <title>momentum</title>
+</head>
+
+<body>
+  <div class="header">
+    <button class="btn-bg btn-refresh">Change background</button>
+    <div class="weather">
+      <span class="weather-error"></span>
+      <span><span class="weather-icon"></span> <span class="temp"></span></span>
+      <span><span class="wind"></span></span>
+      <span><span class="hum"></span></span>
+      <span class="city" contenteditable="true" tabindex="-1">Moscow</span>
+    </div>
+  </div>
+
+  <div class="main">
+    <h2 class="day"></h2>
+    <time class="time"></time>
+    <h1>
+      <span class="greeting"></span>
+      <span class="name" contenteditable="true" tabindex="-1"></span>
+    </h1>
+    <h2>What Is Your Focus For Today?</h2>
+    <h2 class="focus" contenteditable="true" tabindex="-1"></h2>
+  </div>
+
+  <div class="footer">
+    <div class="quote">
+      <figure class="quote">
+        <blockquote></blockquote>
+        <figcaption></figcaption>
+      </figure>
+      <button class="btn-quote btn-refresh">Change quote</button>
+    </div>
+  </div>
+
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
