@@ -155,3 +155,40 @@ const setName = (e) => {
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 name.addEventListener('click', () => name.textContent = '');
+
+// get focus
+
+const getFocus = () => {
+  if (localStorage.getItem('focus') === null) {
+    focus.textContent = '[Enter Focus]';
+  } else {
+    focus.textContent = localStorage.getItem('focus');
+  }
+};
+
+// set focus
+
+const setFocus = (e) => {
+  const newFocus = e.target.innerText.trim();
+
+  if (e.type === 'keypress') {
+    if (e.which == 13 || e.keyCode == 13) {
+      if (newFocus !== '') {
+        localStorage.setItem('focus', newFocus);
+      } else {
+        getFocus();
+      }
+      focus.blur();
+    }
+  } else {
+    if (newFocus !== '') {
+      localStorage.setItem('focus', newFocus);
+    } else {
+      getFocus();
+    }
+  }
+};
+
+focus.addEventListener('keypress', setFocus);
+focus.addEventListener('blur', setFocus);
+focus.addEventListener('click', () => focus.textContent = '');
