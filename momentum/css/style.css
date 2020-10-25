@@ -76,6 +76,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   flex: 0 0 140px;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .main {
@@ -86,6 +87,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .footer {
@@ -96,6 +98,7 @@ body {
   align-items: center;
   flex: 0 0 150px;
   width: 100%;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .time {
